@@ -449,35 +449,16 @@ c
 c'============================='
 c  'MY CUTS BEGIN'
 c'============================='
-
-c     pick smallest mee
-
- 
-c      open(unit=10, file=trim("/home/smknapen/MG5_aMC_v3_4_1/mu_to_3e_2nu_polarized_hack/my_output.txt"), status='new')
-  
-c      write(10, *) p(0:3,1)
-c      write(10, *) p(0:3,2)
-c      write(10, *) p(0:3,3)
-c      write(10, *) p(0:3,4)
-c      write(10, *) p(0:3,5)
-c      write(10, *) p(0:3,6)
        
       mee1=SumDot(p(0:3,2),p(0:3,4),+1d0)
       mee2=SumDot(p(0:3,3),p(0:3,4),+1d0)
       
       maxmee2=MAXMEECUT*MAXMEECUT
       minmee2=MINMEECUT*MINMEECUT
-c      write(10, *) "min", minmee2
-c      write(10, *) "max", maxmee2
-c      write(10, *) "mee1", mee1
-c      write(10, *) "mee2",mee2
       
       mee1pass = (mee1 .lt. maxmee2).and.(mee1 .gt. minmee2)
       mee2pass = (mee2 .lt. maxmee2).and.(mee2 .gt. minmee2)
-      
-c      write(10, *) mee1pass
-c      write(10, *) mee2pass
-    
+
       if (.not.((mee1pass.or.mee2pass))) then
         write(10, *) "yes"
         passcuts=.false.
